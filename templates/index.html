@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crop Recommend System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
+  <style>
+	     ::-webkit-scrollbar {
+  display: none;
+}
+		.text-success{
+			color: mediumseagreen;
+			text-align: center;
+			font-size: 66px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-weight: 499;
+		}
+
+		.warning {
+			color: red;
+			font-weight: bold;
+			text-align: center;
+		}
+		.card{
+		margin-left:410px;
+		margin-top: 20px;
+		color: white;
+		}
+		.container{
+		background:#edf2f7;
+		font-weight: bold;
+		padding-bottom:10px;
+		border-radius: 15px;
+		}
+		video{
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			position: fixed;
+			z-index: -1;
+		}
+		.op{
+			text-align: center;
+			margin: auto;
+			width: 50%;
+		}
+		img {
+               display: block;
+               margin-left: auto;
+               margin-right: auto;
+               width: 30%;
+			height:30%;
+          }
+	</style>
+
+
+
+
+  <body style="background:#BCBBB8" >
+	<video autoplay muted loop src="../static/1.mp4"></video>
+  <!--=======================navbar=====================================================-->
+<nav class="navbar navbar-expand-lg navbar-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Crop Recommendation 🌳</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<!--==========================================================================================-->
+  <div class="container my-3 mt-3">
+      <h1 class="text-success">Crop Recommendation System <span class="text-success">🌱</span></h1>
+
+<!--      adding form-->
+      <form action="/predict" method="POST">
+          <div class="row">
+              <div class="col-md-4">
+					<label for="Nitrogen">Nitrogen</label>
+					<input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control" max="300" required step="0">
+				</div>
+               <div class="col-md-4">
+					<label for="Phosporus">Phosphorus</label>
+					<input type="number" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus" class="form-control" max="300" required step="00">
+				</div>
+				<div class="col-md-4">
+					<label for="Potassium">Potassium</label>
+					<input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control" max="400" required step="0">
+				</div>
+          </div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Temperature">Temperature</label>
+					<input type="number" step="0.1" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" max="70" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="Humidity">Humidity</label>
+					<input type="number" step="0.1" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" max="200" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="pH">pH</label>
+					<input type="number" step="0.1" id="Ph" name="Ph" placeholder="Enter pH value" class="form-control" min="3.0" max="9.9" required step="0">
+				</div>
+			</div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Rainfall">Rainfall</label>
+					<input type="number" step="0.01" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" max="400" required>
+				</div>
+			</div>
+
+
+
+
+           <div class="row mt-4">
+
+           <div class="col-md-12 text-center">
+				<button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+			</div>
+			</div>
+      </form>
+           <div style="width: 30px;">
+             <h1> </h1>
+		 </div>
+           {% if name == "rice" %}
+		 <img src="../static/rice.jpeg" alt="">
+		  {% endif %}
+		 {% if name == "maize" %}
+		  <img src="../static/maiz.jpg" alt="">
+		  {% endif %}
+		 {% if name == "jute" %}
+		   <img src="../static/jute.jpg" alt="">
+		  {% endif %}
+		 {% if name == "cotton" %}
+		    <img src="../static/cotton.jpg" alt="">
+		  {% endif %}
+		 {% if name == "coconut" %}
+		    <img src="../static/coconut.jpg" alt="">
+		  {% endif %}
+		 {% if name == "papaya" %}
+		  <img src="../static/papaya.jpg" alt="">
+		  {% endif %}
+		 {% if name == "orange" %}
+		    <img src="../static/orange.jpg" alt="">
+		  {% endif %}
+		 {% if name == "apple" %}
+		    <img src="../static/apples.jpg" alt="">
+		  {% endif %}
+		 {% if name == "muskmelon" %}
+		    <img src="../static/muskmelon.jpeg" alt="">
+		  {% endif %}
+		 {% if name == "watermelon" %}
+		    <img src="../static/watermelon.jpg" alt="">
+		  {% endif %}
+		 {% if name == "grapes" %}
+		    <img src="../static/grapes.jpg" alt="">
+		  {% endif %}
+		 {% if name == "mango" %}
+		    <img src="../static/mango.jpg" alt="">
+		  {% endif %}
+		 {% if name == "banana" %}
+		    <img src="../static/banana.jpg" alt="">
+		  {% endif %}
+		 {% if name == "pomegranate" %}
+		    <img src="../static/pomegranate.jpg" alt="">
+		  {% endif %}
+		 {% if name == "lentil" %}
+		    <img src="../static/lentil.jpg" alt="">
+		  {% endif %}
+		 {% if name == "blackgram" %}
+		    <img src="../static/blackgram.jpg" alt="">
+		  {% endif %}
+		 {% if name == "mungbean" %}
+		    <img src="../static/mungbean.jpg" alt="">
+		  {% endif %}
+		 {% if name == "mothbeans" %}
+		    <img src="../static/mothbeans.jpg" alt="">
+		  {% endif %}
+		 {% if name == "pigeonpeas" %}
+		    <img src="../static/pigeonpeas.jpg" alt="">
+		  {% endif %}
+		 {% if name == "kidneybeans" %}
+		    <img src="../static/kidneybeans.jpg" alt="">
+		  {% endif %}
+		 {% if name == "chickpea" %}
+		    <img src="../static/chickpea.jpg" alt="">
+		  {% endif %}
+		 {% if name == "coffee" %}
+		    <img src="../static/coffee.jpg" alt="">
+		  {% endif %}
+               <div class="t1">
+				<h1></h1>
+			</div>
+       {% if result %}
+		<div class="card bg-dark" style="width: 18rem;   text-align: center; margin: auto; width: 25%;">
+		  <div class="card-body">
+			<h5 class="card-title">Recommend Crop for cultivation is:</h5>
+			<p class="card-text">{{ result }}</p>
+		  </div>
+		</div>
+	   {% endif %}
+  </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>
